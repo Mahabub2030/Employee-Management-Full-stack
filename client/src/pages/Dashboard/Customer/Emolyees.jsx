@@ -18,7 +18,7 @@ const Employees = () => {
       <Helmet>
         <title>Employees</title>
       </Helmet>
-      <div className="w-full mt-10">
+      <div className="w-full mt-10 text-sm">
         <div className="overflow-x-auto border border-gray-200 rounded-lg shadow-sm">
           <table className="table-auto w-full border-collapse">
             <thead className="bg-gray-800 text-white uppercase text-sm">

@@ -48,10 +48,12 @@ const client = new MongoClient(uri, {
 });
 async function run() {
   try {
-    const db = client.db("EmployessDB");
+    const db = client.db("Employees-MangoDB");
+
+    const emplyeesCollection = db.collection("Employees")
     const usersCollection = db.collection("users");
-    const EmplyeesDateCollection = db.collection("EmplyeesDate");
-    const EmplyeesCollection = db.collection("Emplyees");
+    // const EmplyeesDateCollection = db.collection("Employees");
+    // const EmplyeesCollection = db.collection("Employees");
 
     // save or update a user in db
     app.post("/users/:email", async (req, res) => {
@@ -100,50 +102,23 @@ async function run() {
       }
     });
 
-    // save a  data in db
-    app.post("/EmplyeesDate", async (req, res) => {
-      const DateData = req.body;
-      const result = await EmplyeesDateCollection.insertOne(DateData);
-      res.send(result);
-    });
-    app.post("/EmplyeesDate", async (req, res) => {
-      const EmplyeesDate = req.body;
-      const result = await EmplyeesDateCollection.insertOne(EmplyeesDate);
-      console.log("Received Employees:", EmplyeesDate);
-      res.send(result);
-    });
+  
+ 
 
-    app.post("/Emplyees", async (req, res) => {
-      const Emplyees = req.body;
-      const result = await EmplyeesCollection.insertOne(Emplyees);
-      console.log("Received Employees:", Emplyees);
-      res.send(result);
-    });
+    // app.post("/emplyees", async (req, res) => {
+    //   const Emplyees = req.body;
+    //   const result = await EmplyeesCollection.insertOne(Emplyees);
+    //   console.log("Received Employees:", Emplyees);
+    //   res.send(result);
+    // });
 
-    app.get("/Emplyees", async (req, res) => {
-      const result = await usersCollection.find().limit(20).toArray();
+    app.get("/emplyees", async (req, res) => {
+      const result = await emplyeesCollection.find().toArray();
       res.send(result);
-    });
-
-    app.get("/EmplyeesDate", async (req, res) => {
-      const result = await EmplyeesDateCollection.find().limit(20).toArray();
-      res.send(result);
-    });
-    // delete a date from db 
-    app.delete("/EmplyeesDate/:id",verifyToken, async (req, res) => {
-      const id = req.params.id;
-      const query = { _id: new ObjectId(id) };
-      const result = await EmplyeesDateCollection.deleteOne(query)
-      res.send(result)
-    });
-    // updte date from db
-    app.get("/EmplyeesDate/:id",verifyToken, async (req, res) => {
-      const id = req.params.id;
-      const query = { _id: new ObjectId(id) }
-      const result = await EmplyeesDateCollection.findOne(query)
-      res.send(result)
     });
    
+
+    
 
     // Send a ping to confirm a successful connection
     await client.db("admin").command({ ping: 1 });
