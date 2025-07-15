@@ -7,7 +7,7 @@ const Employees = () => {
   const { data: employees, isLoading } = useQuery({
     queryKey: ["employees"],
     queryFn: async () => {
-      const { data } = await axios(`http://localhost:5000/EmplyeesDate`);
+      const { data } = await axios(`http://localhost:5000/emplyees`);
       return data;
     },
   });
@@ -47,15 +47,17 @@ const Employees = () => {
                 employees?.map((employee, index) => (
                   <tr key={employee.id}>
                     <td className="px-4 py-4">{index + 1}</td>
-                    <td className="px-4 py-4">{employee.name}</td>
-                    <td className="px-4 py-4">{employee.Group}</td>
-                    <td className="px-4 py-4">{employee.IqamaValidDate}</td>
+                    <td className="px-4 py-4">{employee.Name}</td>
+                    <td className="px-4 py-4">{employee.Location}</td>
+                    {/* <td className="px-4 py-4">{employee.IqamaValidDate}</td> */}
+                    <td className="px-4 py-4">84(Days)</td>
                     <td className="px-4 py-4 text-blue-600 cursor-pointer hover:text-blue-800">
-                      {employee.SAPID}
+                      {employee.SAP_ID}
                     </td>
-                    <td className="px-4 py-4">{employee.IqamaNumber}</td>
-                    <td className="px-4 py-4">{employee.DACOID}</td>
-                    <td className="px-4 py-4">{employee.DacoIdValidDate}</td>
+                    <td className="px-4 py-4">{employee.Iqama_Number}</td>
+                    <td className="px-4 py-4">{employee.DACO_ID}</td>
+                    <td className="px-4 py-4">84(Days)</td>
+                    {/* <td className="px-4 py-4">{employee.DacoIdValidDate}</td> */}
                    
                 
                     <td className="px-4 py-4 flex space-x-4">

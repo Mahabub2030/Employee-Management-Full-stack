@@ -51,6 +51,7 @@ async function run() {
     const db = client.db("Employees-MangoDB");
 
     const emplyeesCollection = db.collection("Employees")
+    const emplyeesDateCollection = db.collection("emplyeesDate")
     const usersCollection = db.collection("users");
     // const EmplyeesDateCollection = db.collection("Employees");
     // const EmplyeesCollection = db.collection("Employees");
@@ -105,12 +106,12 @@ async function run() {
   
  
 
-    // app.post("/emplyees", async (req, res) => {
-    //   const Emplyees = req.body;
-    //   const result = await EmplyeesCollection.insertOne(Emplyees);
-    //   console.log("Received Employees:", Emplyees);
-    //   res.send(result);
-    // });
+    app.post("/emplyeesDate", async (req, res) => {
+      const Emplyees = req.body;
+      const result = await emplyeesDateCollection.insertOne(emplyeesDate);
+      console.log("Received Employees:", Emplyees);
+      res.send(result);
+    });
 
     app.get("/emplyees", async (req, res) => {
       const result = await emplyeesCollection.find().toArray();

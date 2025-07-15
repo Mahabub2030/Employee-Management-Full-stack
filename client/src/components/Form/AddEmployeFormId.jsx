@@ -21,7 +21,7 @@ const AddEmployeFormId = () => {
       ? form.DacoIdValiddate.value
       : "N/A";
 
-    const EmplyeesDate = {
+    const emplyeesDate = {
       name,
       Group,
       IqamaValidDate,
@@ -31,16 +31,16 @@ const AddEmployeFormId = () => {
       DacoIdValidDate,
     };
 
-    console.log(EmplyeesDate);
+    console.log(emplyeesDate);
  
 
     try {
-      const response = await fetch("http://localhost:5000/EmplyeesDate", {
+      const response = await fetch("http://localhost:5000/emplyeesDate", {
         method: "POST",
         headers: {
           "Content-Type": "application/json", // Fixed incorrect header
         },
-        body: JSON.stringify(EmplyeesDate),
+        body: JSON.stringify(emplyeesDate),
       });
 
       const data = await response.json();
